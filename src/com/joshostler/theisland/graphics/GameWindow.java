@@ -39,7 +39,7 @@ public class GameWindow {
 	}
 	
 	public void setTitle(String title) {
-	    //this.title = title;
+	    this.title = title;
 	    if(Display.isCreated()) {
 	    	Display.setTitle(title);
 	    }
