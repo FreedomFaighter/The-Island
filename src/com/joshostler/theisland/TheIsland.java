@@ -29,7 +29,8 @@ public class TheIsland implements Runnable, GameWindowCallback {
 	 * 0 = Menu
 	 * 1 = Game
 	 */
-	private int screenType = 1;
+	private enum State {INTRO, LOADING, MAIN_MENU, GAME};
+	private State state = State.GAME;
 	
 	public TheIsland(){
 		try {
@@ -43,7 +44,11 @@ public class TheIsland implements Runnable, GameWindowCallback {
 	private void startGame() throws LWJGLException {
 		
 		window = ResourceHandler.get().getGameWindow();
-		window.setResolution(width*scale, height*scale);
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		width = gd.getDisplayMode().getWidth();
+		height = gd.getDisplayMode().getHeight();
+		
+		window.setResolution(width, height);
 		window.setGameWindowCallback(this);
 		window.setTitle(title);
 		
